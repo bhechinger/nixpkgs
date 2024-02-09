@@ -27325,6 +27325,8 @@ with pkgs;
   # zen-kernel
   linuxPackages_zen = linuxKernel.packages.linux_zen;
   linux_zen = linuxPackages_zen.kernel;
+  linuxPackages_zen_6_6 = linuxKernel.packages.linux_zen_6_6;
+  linux_zen_6_6 = linuxPackages_zen_6_6.kernel;
   linuxPackages_lqx = linuxKernel.packages.linux_lqx;
   linux_lqx = linuxPackages_lqx.kernel;
 
