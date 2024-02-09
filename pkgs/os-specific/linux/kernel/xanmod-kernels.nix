@@ -64,6 +64,7 @@ let
       HZ_1000 = yes;
 
       PREEMPT_RT = yes;
+      PREEMPT_VOLUNTARY = y
     };
 
     extraMeta = {
