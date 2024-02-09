@@ -18,9 +18,9 @@ let
   };
 
   rtVariant = {
-    version = "6.6.15";
-    suffix = "rt22-xanmod1";
-    hash = "sha256-/qBHpZTyfw/WqXU0T06fsFhlNUNK0F0/IdjRsKsBCbA=";
+    version = "6.6.14";
+    suffix = "rt21-xanmod1";
+    hash = "sha256-k6Q5gHkWI9RvLhbPWfiH6in/TnKjiVGFPnbXV4kqIMo=";
     variant = "rt";
   };
 
