@@ -232,6 +232,13 @@ in {
       ];
     }).zen;
 
+    linux_zen_6_6 = (zenKernels {
+      kernelPatches = [
+        kernelPatches.bridge_stp_helper
+        kernelPatches.request_key_helper
+      ];
+    }).zen_6_6;
+
     linux_lqx = (zenKernels {
       kernelPatches = [
         kernelPatches.bridge_stp_helper
