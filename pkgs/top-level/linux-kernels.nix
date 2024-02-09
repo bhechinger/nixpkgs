@@ -666,6 +666,7 @@ in {
     linux_6_6_hardened = recurseIntoAttrs (packagesFor kernels.linux_6_6_hardened);
 
     linux_zen = recurseIntoAttrs (packagesFor kernels.linux_zen);
+    linux_zen_6_6 = recurseIntoAttrs (packagesFor kernels.linux_zen_6_6);
     linux_lqx = recurseIntoAttrs (packagesFor kernels.linux_lqx);
     linux_xanmod = recurseIntoAttrs (packagesFor kernels.linux_xanmod);
     linux_xanmod_stable = recurseIntoAttrs (packagesFor kernels.linux_xanmod_stable);
