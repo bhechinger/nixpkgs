@@ -257,6 +257,7 @@ in {
     linux_xanmod = xanmodKernels.lts;
     linux_xanmod_stable = xanmodKernels.main;
     linux_xanmod_latest = xanmodKernels.main;
+    linux_xanmod_rt = xanmodKernels.rt;
 
     linux_libre = deblobKernel packageAliases.linux_default.kernel;
 
@@ -671,6 +672,7 @@ in {
     linux_xanmod = recurseIntoAttrs (packagesFor kernels.linux_xanmod);
     linux_xanmod_stable = recurseIntoAttrs (packagesFor kernels.linux_xanmod_stable);
     linux_xanmod_latest = recurseIntoAttrs (packagesFor kernels.linux_xanmod_latest);
+    linux_xanmod_rt = recurseIntoAttrs (packagesFor kernels.linux_xanmod_rt);
 
     linux_libre = recurseIntoAttrs (packagesFor kernels.linux_libre);
 

@@ -27337,6 +27337,8 @@ with pkgs;
   linux_xanmod_stable = linuxKernel.kernels.linux_xanmod_stable;
   linuxPackages_xanmod_latest = linuxKernel.packages.linux_xanmod_latest;
   linux_xanmod_latest = linuxKernel.kernels.linux_xanmod_latest;
+  linuxPackages_xanmod_rt = linuxKernel.packages.linux_xanmod_rt;
+  linux_xanmod_rt = linuxKernel.kernels.linux_xanmod_rt;
 
   linux-doc = callPackage ../os-specific/linux/kernel/htmldocs.nix { };
 

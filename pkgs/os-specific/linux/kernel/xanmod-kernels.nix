@@ -17,6 +17,13 @@ let
     variant = "main";
   };
 
+  rtVariant = {
+    version = "6.6.15";
+    suffix = "rt22-xanmod1";
+    hash = "sha256-/qBHpZTyfw/WqXU0T06fsFhlNUNK0F0/IdjRsKsBCbA=";
+    variant = "rt";
+  };
+
   xanmodKernelFor = { version, suffix ? "xanmod1", hash, variant }: buildLinux (args // rec {
     inherit version;
     modDirVersion = lib.versions.pad 3 "${version}-${suffix}";
@@ -61,4 +68,5 @@ in
 {
   lts = xanmodKernelFor ltsVariant;
   main = xanmodKernelFor mainVariant;
+  rt = xanmodKernelFor rtVariant;
 }
