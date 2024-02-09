@@ -62,6 +62,8 @@ let
       HZ = freeform "1000";
       HZ_250 = no;
       HZ_1000 = yes;
+
+      PREEMPT_RT = yes;
     };
 
     extraMeta = {
