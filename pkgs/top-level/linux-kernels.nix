@@ -205,6 +205,14 @@ in {
       ];
     };
 
+    linux_rt_6_9 = callPackage ../os-specific/linux/kernel/linux-rt-6.9.nix {
+      kernelPatches = [
+        kernelPatches.bridge_stp_helper
+        kernelPatches.request_key_helper
+        kernelPatches.export-rt-sched-migrate
+      ];
+    };
+
     linux_testing = let
       testing = callPackage ../os-specific/linux/kernel/mainline.nix {
         # A special branch that tracks the kernel under the release process
@@ -641,6 +649,7 @@ in {
      linux_rt_5_15 = packagesFor kernels.linux_rt_5_15;
      linux_rt_6_1 = packagesFor kernels.linux_rt_6_1;
      linux_rt_6_6 = packagesFor kernels.linux_rt_6_6;
+     linux_rt_6_9 = packagesFor kernels.linux_rt_6_9;
      __attrsFailEvaluation = true;
   };
 
