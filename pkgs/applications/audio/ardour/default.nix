@@ -169,6 +169,7 @@ stdenv.mkDerivation rec {
     "--ptformat"
     "--run-tests"
     "--test"
+    "--debug-symbols"
     # since we don't have https://github.com/agfline/LibAAF yet,
     # we need to use some of ardours internal libs, see:
     # https://discourse.ardour.org/t/ardour-8-2-released/109615/6
