@@ -17,13 +17,6 @@ let
     variant = "main";
   };
 
-  rtVariant = {
-    version = "6.6.14";
-    suffix = "rt21-xanmod1";
-    hash = "sha256-k6Q5gHkWI9RvLhbPWfiH6in/TnKjiVGFPnbXV4kqIMo=";
-    variant = "rt";
-  };
-
   xanmodKernelFor = { version, suffix ? "xanmod1", hash, variant }: buildLinux (args // rec {
     inherit version;
     modDirVersion = lib.versions.pad 3 "${version}-${suffix}";
@@ -48,20 +41,13 @@ let
       TCP_CONG_BBR = yes;
       DEFAULT_BBR = yes;
 
-      # WineSync driver for fast kernel-backed Wine
-      WINESYNC = module;
-
-    } // lib.optionalAttrs (variant == "main" || variant == "lts") {
       # Preemptive Full Tickless Kernel at 250Hz
       HZ = freeform "250";
       HZ_250 = yes;
       HZ_1000 = no;
 
-    } // lib.optionalAttrs (variant == "rt") {
-      # Preemptive Full Tickless Kernel at 250Hz
-      HZ = freeform "1000";
-      HZ_250 = no;
-      HZ_1000 = yes;
+      # Disable writeback throttling by default
+      BLK_WBT_MQ = lib.mkOverride 60 no;
     };
 
     extraMeta = {
@@ -75,5 +61,4 @@ in
 {
   lts = xanmodKernelFor ltsVariant;
   main = xanmodKernelFor mainVariant;
-  rt = xanmodKernelFor rtVariant;
 }

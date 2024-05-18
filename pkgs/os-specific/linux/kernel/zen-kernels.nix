@@ -114,6 +114,5 @@ let
 in
 {
   zen = zenKernelsFor zenVariant;
-  zen_6_6 = zenKernelsFor zenVariant_6_6;
   lqx = zenKernelsFor lqxVariant;
 }

@@ -205,14 +205,6 @@ in {
       ];
     };
 
-    linux_rt_6_9 = callPackage ../os-specific/linux/kernel/linux-rt-6.9.nix {
-      kernelPatches = [
-        kernelPatches.bridge_stp_helper
-        kernelPatches.request_key_helper
-        kernelPatches.export-rt-sched-migrate
-      ];
-    };
-
     linux_testing = let
       testing = callPackage ../os-specific/linux/kernel/mainline.nix {
         # A special branch that tracks the kernel under the release process
@@ -240,13 +232,6 @@ in {
       ];
     }).zen;
 
-    linux_zen_6_6 = (zenKernels {
-      kernelPatches = [
-        kernelPatches.bridge_stp_helper
-        kernelPatches.request_key_helper
-      ];
-    }).zen_6_6;
-
     linux_lqx = (zenKernels {
       kernelPatches = [
         kernelPatches.bridge_stp_helper
@@ -265,7 +250,6 @@ in {
     linux_xanmod = xanmodKernels.lts;
     linux_xanmod_stable = xanmodKernels.main;
     linux_xanmod_latest = xanmodKernels.main;
-    linux_xanmod_rt = xanmodKernels.rt;
 
     linux_libre = deblobKernel packageAliases.linux_default.kernel;
 
@@ -649,7 +633,6 @@ in {
      linux_rt_5_15 = packagesFor kernels.linux_rt_5_15;
      linux_rt_6_1 = packagesFor kernels.linux_rt_6_1;
      linux_rt_6_6 = packagesFor kernels.linux_rt_6_6;
-     linux_rt_6_9 = packagesFor kernels.linux_rt_6_9;
      __attrsFailEvaluation = true;
   };
 
@@ -676,12 +659,10 @@ in {
     linux_6_6_hardened = recurseIntoAttrs (packagesFor kernels.linux_6_6_hardened);
 
     linux_zen = recurseIntoAttrs (packagesFor kernels.linux_zen);
-    linux_zen_6_6 = recurseIntoAttrs (packagesFor kernels.linux_zen_6_6);
     linux_lqx = recurseIntoAttrs (packagesFor kernels.linux_lqx);
     linux_xanmod = recurseIntoAttrs (packagesFor kernels.linux_xanmod);
     linux_xanmod_stable = recurseIntoAttrs (packagesFor kernels.linux_xanmod_stable);
     linux_xanmod_latest = recurseIntoAttrs (packagesFor kernels.linux_xanmod_latest);
-    linux_xanmod_rt = recurseIntoAttrs (packagesFor kernels.linux_xanmod_rt);
 
     linux_libre = recurseIntoAttrs (packagesFor kernels.linux_libre);
 
@@ -701,7 +682,7 @@ in {
     linux_latest = packages.linux_6_9;
     linux_mptcp = throw "'linux_mptcp' has been moved to https://github.com/teto/mptcp-flake";
     linux_rt_default = packages.linux_rt_5_4;
-    linux_rt_latest = packages.linux_rt_6_9;
+    linux_rt_latest = packages.linux_rt_6_6;
   } // { __attrsFailEvaluation = true; };
 
   manualConfig = callPackage ../os-specific/linux/kernel/manual-config.nix {};
