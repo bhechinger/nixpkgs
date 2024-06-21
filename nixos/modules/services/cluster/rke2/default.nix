@@ -258,7 +258,7 @@ in
       "kernel.panic_on_oops" = 1;
     };
 
-    systemd.tmpfiles.rules = mkIf cfg.cni == "cilium" [
+    systemd.tmpfiles.rules = mkIf (cfg.cni == "cilium") [
       "L /var/lib/rancher/rke2/server/manifests/rke2-cilium-config.yaml - - - - ${ciliumKubeProxy}"
     ];
 
