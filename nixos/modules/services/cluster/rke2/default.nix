@@ -259,7 +259,7 @@ in
     };
 
     systemd.tmpfiles.rules = mkIf (cfg.cni == "cilium") [
-      "L /var/lib/rancher/rke2/server/manifests/rke2-cilium-config.yaml - - - - ${ciliumKubeProxy}"
+      "C /var/lib/rancher/rke2/server/manifests/rke2-cilium-config.yaml 0644 root root - ${ciliumKubeProxy}"
     ];
 
     systemd.services.rke2 = {
