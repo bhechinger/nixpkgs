@@ -3,6 +3,23 @@
 with lib;
 let
   cfg = config.services.rke2;
+
+  ciliumKubeProxy = pkgs.writeTextFile {
+    name = "rke2-cilium-config.yaml";
+    text = ''
+        ---
+        apiVersion: helm.cattle.io/v1
+        kind: HelmChartConfig
+        metadata:
+          name: rke2-cilium
+          namespace: kube-system
+        spec:
+          valuesContent: |-
+            kubeProxyReplacement: true
+            k8sServiceHost: 127.0.0.1
+            k8sServicePort: 6443
+    '';
+   };
 in
 {
   imports = [ ];
@@ -241,36 +258,9 @@ in
       "kernel.panic_on_oops" = 1;
     };
 
-    ciliumKubeProxy = pkgs.writeTextFile {
-      name = "rke2-cilium-config.yaml";
-      text = ''
-          ---
-          apiVersion: helm.cattle.io/v1
-          kind: HelmChartConfig
-          metadata:
-            name: rke2-cilium
-            namespace: kube-system
-          spec:
-            valuesContent: |-
-              kubeProxyReplacement: true
-              k8sServiceHost: 127.0.0.1
-              k8sServicePort: 6443
-      '';
-    };
-
-    systemd.tmpfiles.settings = mkIf cfg.cni == "cilium" {
-      "rke2-cilium-config.conf" = {
-        "/var/lib/rancher/rke2/server/manifests/rke2-cilium-config.yaml" = {
-          C = {
-            user = "root";
-            group = "root";
-            mode = "0644";
-            age = "-";
-            argument = ciliumKubeProxy;
-          };
-        };
-      };
-    };
+    systemd.tmpfiles.rules = mkIf cfg.cni == "cilium" [
+      "L /var/lib/rancher/rke2/server/manifests/rke2-cilium-config.yaml 0644 root root - ${ciliumKubeProxy}"
+    ];
 
     systemd.services.rke2 = {
       description = "Rancher Kubernetes Engine v2";
