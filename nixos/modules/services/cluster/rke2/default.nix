@@ -133,7 +133,7 @@ in
     serverAddr = mkOption {
       type = types.str;
       description = "The rke2 server to connect to, used to join a cluster.";
-      example = "https://10.0.0.10:6443";
+      example = "https://10.0.0.10:9345";
       default = "";
     };
 
