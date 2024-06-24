@@ -3,29 +3,6 @@
 with lib;
 let
   cfg = config.services.rke2;
-
-  ciliumKubeProxy = pkgs.writeTextFile {
-    name = "rke2-cilium-config.yaml";
-    text = ''
-        ---
-        apiVersion: helm.cattle.io/v1
-        kind: HelmChartConfig
-        metadata:
-          name: rke2-cilium
-          namespace: kube-system
-        spec:
-          valuesContent: |-
-            kubeProxyReplacement: true
-            k8sServiceHost: 127.0.0.1
-            k8sServicePort: 6443
-            hubble:
-              enabled: true
-              relay:
-                enabled: true
-              ui:
-                enabled: true
-    '';
-   };
 in
 {
   imports = [ ];
@@ -164,6 +141,14 @@ in
       default = "canal";
     };
 
+    ciliumConfig = mkOption {
+      type = types.str;
+      default = "";
+      description = ''
+        HelmChartConfig for Cilium deployment.
+      '';
+    };
+
     cisHardening = mkOption {
       type = types.bool;
       description = ''
@@ -264,8 +249,8 @@ in
       "kernel.panic_on_oops" = 1;
     };
 
-    systemd.tmpfiles.rules = mkIf (cfg.cni == "cilium") [
-      "C /var/lib/rancher/rke2/server/manifests/rke2-cilium-config.yaml 0644 root root - ${ciliumKubeProxy}"
+    systemd.tmpfiles.rules = mkIf (cfg.ciliumConfig != "") [
+      "C /var/lib/rancher/rke2/server/manifests/rke2-cilium-config.yaml 0644 root root - ${cfg.ciliumConfig}"
     ];
 
     systemd.services.rke2 = {
