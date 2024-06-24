@@ -142,7 +142,7 @@ in
     };
 
     ciliumConfig = mkOption {
-      type = types.str;
+      type = types.pathInStore;
       default = "";
       description = ''
         HelmChartConfig for Cilium deployment.
