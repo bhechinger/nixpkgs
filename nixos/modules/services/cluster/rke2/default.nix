@@ -141,13 +141,13 @@ in
       default = "canal";
     };
 
-    ciliumConfig = mkOption {
-      type = types.pathInStore;
-      default = "";
-      description = ''
-        HelmChartConfig for Cilium deployment.
-      '';
-    };
+#    ciliumConfig = mkOption {
+#      type = types.pathInStore;
+#      default = "";
+#      description = ''
+#        HelmChartConfig for Cilium deployment.
+#      '';
+#    };
 
     cisHardening = mkOption {
       type = types.bool;
@@ -249,9 +249,9 @@ in
       "kernel.panic_on_oops" = 1;
     };
 
-    systemd.tmpfiles.rules = mkIf (cfg.ciliumConfig != "") [
-      "C /var/lib/rancher/rke2/server/manifests/rke2-cilium-config.yaml 0644 root root - ${cfg.ciliumConfig}"
-    ];
+#    systemd.tmpfiles.rules = mkIf (cfg.ciliumConfig != "") [
+#      "C /var/lib/rancher/rke2/server/manifests/rke2-cilium-config.yaml 0644 root root - ${cfg.ciliumConfig}"
+#    ];
 
     systemd.services.rke2 = {
       description = "Rancher Kubernetes Engine v2";
