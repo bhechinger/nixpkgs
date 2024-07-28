@@ -3,8 +3,8 @@
 }:
 
 stdenv.mkDerivation {
-  pname = "non";
-  version = "unstable-2021-01-28";
+  pname = "non-xt";
+  version = "2.0.2";
   src = fetchFromGitHub {
     owner = "stazed";
     repo = "non-mixer-xt";
