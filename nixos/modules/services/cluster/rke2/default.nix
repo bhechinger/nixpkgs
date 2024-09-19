@@ -114,7 +114,7 @@ in
     serverAddr = lib.mkOption {
       type = lib.types.str;
       description = "The rke2 server to connect to, used to join a cluster.";
-      example = "https://10.0.0.10:6443";
+      example = "https://10.0.0.10:9345";
       default = "";
     };
 
@@ -139,8 +139,16 @@ in
       default = "canal";
     };
 
-    cisHardening = lib.mkOption {
-      type = lib.types.bool;
+#    ciliumConfig = mkOption {
+#      type = types.pathInStore;
+#      default = "";
+#      description = ''
+#        HelmChartConfig for Cilium deployment.
+#      '';
+#    };
+
+    cisHardening = mkOption {
+      type = types.bool;
       description = ''
         Enable CIS Hardening for RKE2.
 
@@ -238,6 +246,10 @@ in
       "kernel.panic" = 10;
       "kernel.panic_on_oops" = 1;
     };
+
+#    systemd.tmpfiles.rules = mkIf (cfg.ciliumConfig != "") [
+#      "C /var/lib/rancher/rke2/server/manifests/rke2-cilium-config.yaml 0644 root root - ${cfg.ciliumConfig}"
+#    ];
 
     systemd.services."rke2-${cfg.role}" = {
       description = "Rancher Kubernetes Engine v2";
