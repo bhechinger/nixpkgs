@@ -147,7 +147,7 @@ in
 #      '';
 #    };
 
-    cisHardening = mkOption {
+    cisHardening = lib.mkOption {
       type = types.bool;
       description = ''
         Enable CIS Hardening for RKE2.
