@@ -8,7 +8,7 @@
   etcdVersion = "v3.5.13-k3s1";
   pauseVersion = "3.6";
   ccmVersion = "v1.31.0-build20240910";
-  dockerizedVersion = "1.31.1-rc3-rke2r1";
+  dockerizedVersion = "v1.31.1-rc3-rke2r1";
   golangVersion = "go1.22.6";
   eol = "2025-10-28";
 }
