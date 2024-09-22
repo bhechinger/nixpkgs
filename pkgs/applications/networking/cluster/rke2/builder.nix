@@ -52,7 +52,7 @@ buildGoModule rec {
     "-X github.com/k3s-io/k3s/pkg/version.Version=v${version}"
     "-X github.com/k3s-io/k3s/pkg/version.UpstreamGolang=go${go.version}"
     "-X github.com/rancher/rke2/pkg/images.DefaultRegistry=docker.io"
-    "-X github.com/rancher/rke2/pkg/images.DefaultEtcdImage=rancher/hardened-etcd:${etcdVersion}-build20240418"
+    "-X github.com/rancher/rke2/pkg/images.DefaultEtcdImage=rancher/hardened-etcd:${etcdVersion}"
     "-X github.com/rancher/rke2/pkg/images.DefaultKubernetesImage=rancher/hardened-kubernetes:${k8sImageTag}"
     "-X github.com/rancher/rke2/pkg/images.DefaultPauseImage=rancher/mirrored-pause:${pauseVersion}"
     "-X github.com/rancher/rke2/pkg/images.DefaultRuntimeImage=rancher/rke2-runtime:${dockerizedVersion}"
