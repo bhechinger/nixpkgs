@@ -4,7 +4,7 @@
   rke2Commit = "4bf1156f41631dc0e81d66a6834a53d14b48aaef";
   rke2VendorHash = "sha256-/ALzC2fYYI+DbF+2TSNBiMy57T8wfXGPpdyKtbqdrtE=";
   k8sVersion = "v1.31.0";
-  k8sImageTag = "v1.31.0-rke2r1-build20240815";
+  k8sImageTag = "v1.31.0-rke2r1-build20240910";
   etcdVersion = "v3.5.13-k3s1-build20240910";
   pauseVersion = "3.6";
   ccmVersion = "v1.29.3-build20240515";
